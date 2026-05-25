@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BeUncheated — Bharosa Karo. Baar Baar.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --g1:#0A1F0A;--g2:#122012;--g3:#1A3A1A;--g4:#2D5A2D;
+  --y1:#B8920A;--y2:#D4A80C;--y3:#F0C020;--y4:#FFD84A;
+  --c1:#FAF7EE;--c2:#F2EAD5;--c3:#E5DAC0;
+  --ch:#181810;--gray:#7A7260;--white:#FFFFFF;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Outfit',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--c1);color:var(--ch);overflow-x:hidden;line-height:1.6}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:var(--y2)}
+
+/* ANN BAR */
+.ann{background:var(--g1);padding:9px 0;text-align:center;position:relative;z-index:300}
+.ann p{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--y3)}
+.ann span{color:rgba(255,255,255,.35);margin:0 10px}
+
+/* NAV */
+nav{position:fixed;top:36px;left:0;right:0;z-index:200;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(250,247,238,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(184,146,10,.12)}
+.logo{font-family:var(--serif);font-size:21px;font-weight:700;color:var(--ch);text-decoration:none}
+.logo em{color:var(--y1);font-style:normal}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--y1)}
+.nav-r{display:flex;align-items:center;gap:1rem}
+.nav-seal{font-size:10px;font-weight:600;letter-spacing:.08em;color:var(--g4);border:1px solid var(--g4);padding:3px 9px}
+.cart-btn{background:none;border:none;cursor:pointer;position:relative;color:var(--ch);padding:4px;transition:color .2s}
+.cart-btn:hover{color:var(--y1)}
+.cart-n{position:absolute;top:-4px;right:-4px;width:16px;height:16px;border-radius:50%;background:var(--y1);color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.nav-wa{padding:8px 16px;background:var(--g1);color:#fff;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:background .2s}
+.nav-wa:hover{background:var(--g3)}
+
+/* HERO */
+.hero{min-height:100vh;background:var(--g1);display:grid;grid-template-columns:1fr 1fr;align-items:center;padding-top:92px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 75% at 72% 50%,rgba(212,168,12,.13) 0%,transparent 70%);pointer-events:none}
+.hero-l{position:relative;z-index:2;padding:4rem 3rem 4rem 6%;animation:fadeUp .9s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:1.75rem;font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--y3)}
+.hero-badge::before{content:'';width:22px;height:1px;background:var(--y3)}
+.hero-h1{font-family:var(--serif);font-size:clamp(48px,5.2vw,80px);font-weight:900;line-height:1.02;color:#fff;margin-bottom:1.4rem;letter-spacing:-.02em}
+.hero-h1 em{color:var(--y3);font-style:italic;display:block}
+.hero-tag{font-size:14px;font-weight:300;line-height:1.85;color:rgba(255,255,255,.52);max-width:390px;margin-bottom:2.25rem}
+.hero-tag strong{color:rgba(255,255,255,.86);font-weight:500}
+.hero-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:3rem}
+.btn-p{padding:12px 26px;background:var(--y2);color:#fff;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s}
+.btn-p:hover{background:var(--y3);transform:translateY(-1px)}
+.btn-g{padding:12px 26px;background:transparent;color:#fff;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(255,255,255,.2);cursor:pointer;transition:all .2s}
+.btn-g:hover{border-color:var(--y3);color:var(--y3)}
+.hero-stats{display:flex;gap:2.5rem;padding-top:1.75rem;border-top:1px solid rgba(255,255,255,.07)}
+.stat-v{font-family:var(--serif);font-size:30px;font-weight:700;color:var(--y3);display:block}
+.stat-l{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.28)}
+
+/* HERO KIOSK IMAGE */
+.hero-r{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 92px)}
+.kiosk-wrap{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:2rem}
+.kiosk-img{width:100%;max-width:520px;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.55);object-fit:cover}
+.kiosk-badge{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);background:var(--y2);color:#fff;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:8px 20px;white-space:nowrap}
+
+/* MARQUEE */
+.marquee{background:var(--y1);padding:10px 0;overflow:hidden}
+.m-track{display:flex;white-space:nowrap;animation:marquee 22s linear infinite}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.m-item{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#fff;padding:0 2.25rem;display:flex;align-items:center;gap:.75rem}
+.m-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.4)}
+
+/* TRUST */
+.trust{background:var(--c2);display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--c3);border-bottom:1px solid var(--c3)}
+.trust-item{padding:2rem 1.5rem;border-right:1px solid var(--c3);text-align:center}
+.trust-item:last-child{border-right:none}
+.ti-icon{font-size:26px;margin-bottom:.55rem;display:block}
+.ti-title{font-family:var(--serif);font-size:15px;font-weight:600;margin-bottom:.25rem}
+.ti-desc{font-size:11px;font-weight:300;color:var(--gray);line-height:1.55}
+
+/* SECTIONS */
+.sec{padding:5.5rem 6%}
+.eyebrow{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--y1);display:flex;align-items:center;gap:10px;margin-bottom:.8rem}
+.eyebrow::before{content:'';width:16px;height:1px;background:var(--y1)}
+.sec-title{font-family:var(--serif);font-size:clamp(30px,3.8vw,50px);font-weight:800;line-height:1.08;margin-bottom:.7rem;letter-spacing:-.01em}
+.sec-title em{color:var(--y1);font-style:italic}
+.sec-sub{font-size:13px;font-weight:300;color:var(--gray);line-height:1.85;max-width:480px;margin-bottom:2.75rem}
+
+/* TABS */
+.tab-row{display:flex;overflow-x:auto;border-bottom:1px solid var(--c3);margin-bottom:2.25rem;gap:0}
+.ptab{padding:9px 18px;font-size:11px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;color:var(--gray);white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;transition:all .2s}
+.ptab.active{color:var(--y1);border-bottom-color:var(--y1);font-weight:600}
+.ptab:hover:not(.active){color:var(--ch)}
+
+/* GRIDS */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:1px;background:var(--c3)}
+.pgrid.hidden{display:none}
+.pcard{background:var(--c1);padding:1.75rem 1.6rem;cursor:pointer;transition:background .2s;position:relative;overflow:hidden}
+.pcard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--y2);transform:scaleX(0);transition:transform .25s;transform-origin:left}
+.pcard:hover{background:#fff}
+.pcard:hover::after{transform:scaleX(1)}
+.pc-tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:2px 7px;margin-bottom:.8rem}
+.t-g{background:var(--g1);color:#fff}
+.t-y{background:var(--y1);color:#fff}
+.t-b{background:var(--ch);color:#fff}
+.t-r{background:var(--g4);color:#fff}
+.t-cs{background:var(--c3);color:var(--gray);border:1px solid var(--gray)}
+.pc-icon{font-size:40px;margin-bottom:.9rem;display:block}
+.pc-name{font-family:var(--serif);font-size:19px;font-weight:700;margin-bottom:.35rem;line-height:1.2}
+.pc-desc{font-size:12px;font-weight:300;color:var(--gray);line-height:1.6;margin-bottom:.9rem}
+.pc-save{display:inline-block;font-size:10px;font-weight:700;background:#FFF5D5;color:var(--y1);border:1px solid var(--y2);padding:2px 7px;margin-bottom:.8rem;letter-spacing:.05em}
+.pc-price{font-size:17px;font-weight:600;margin-bottom:.25rem}
+.pc-del{font-size:11px;margin-bottom:.9rem}
+.free-del{color:var(--g4);font-weight:500}
+.paid-del{color:var(--gray)}
+.pc-btn{width:100%;padding:9px;background:var(--ch);color:#fff;font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s;margin-bottom:5px}
+.pc-btn:hover{background:var(--y1)}
+.pc-wa{width:100%;padding:9px;background:#25D366;color:#fff;font-size:10px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s}
+.pc-wa:hover{background:#1DA851}
+.cs-card{background:var(--c2);padding:1.75rem 1.6rem;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:220px}
+.cs-icon{font-size:38px;margin-bottom:.75rem;opacity:.5}
+.cs-name{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--gray);margin-bottom:.5rem}
+.cs-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--y1);background:var(--c3);padding:4px 12px;border-radius:2px}
+
+/* SUBSCRIPTIONS */
+#subscriptions{background:var(--g1)}
+#subscriptions .sec-title{color:#fff}
+#subscriptions .sec-sub{color:rgba(255,255,255,.4)}
+.sub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1px;background:rgba(255,255,255,.07);margin-top:1rem}
+.sub-card{padding:2.25rem;background:rgba(255,255,255,.03);transition:background .2s;position:relative}
+.sub-card:hover{background:rgba(255,255,255,.06)}
+.sub-card.feat{background:var(--y1)}
+.sub-card.feat:hover{background:var(--y2)}
+.sub-ey{font-size:10px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:.6rem}
+.sub-card.feat .sub-ey{color:rgba(255,255,255,.72)}
+.sub-name{font-family:var(--serif);font-size:23px;font-weight:700;color:#fff;margin-bottom:.25rem}
+.sub-price{font-size:34px;font-weight:800;font-family:var(--serif);color:#fff}
+.sub-cad{font-size:12px;color:rgba(255,255,255,.35);margin-bottom:1.5rem}
+.sub-card.feat .sub-cad{color:rgba(255,255,255,.7)}
+.sub-sel{width:100%;padding:7px;background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.15);font-size:12px;margin-bottom:1.25rem}
+.sub-card.feat .sub-sel{background:rgba(0,0,0,.2);border-color:rgba(255,255,255,.25)}
+.sub-ul{list-style:none;margin-bottom:1.5rem}
+.sub-ul li{font-size:12px;font-weight:300;color:rgba(255,255,255,.6);padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06);display:flex;gap:9px}
+.sub-ul li::before{content:'—';color:var(--y3);flex-shrink:0}
+.sub-ul li:last-child{border-bottom:none}
+.sub-btn{width:100%;padding:12px;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s;background:rgba(255,255,255,.1);color:#fff}
+.sub-card.feat .sub-btn{background:var(--ch)}
+.sub-btn:hover{background:rgba(255,255,255,.18)}
+.sub-card.feat .sub-btn:hover{background:var(--g3)}
+.feat-pill{position:absolute;top:1.4rem;right:1.4rem;background:var(--ch);color:var(--y3);font-size:10px;font-weight:700;padding:2px 9px}
+
+/* HAMPERS */
+.hgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1px;background:var(--c3)}
+.hcard{background:var(--c2);padding:1.75rem 1.6rem;position:relative;overflow:hidden;transition:background .2s;cursor:pointer}
+.hcard:hover{background:#fff}
+.hcard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--y2);transform:scaleX(0);transition:transform .25s;transform-origin:left}
+.hcard:hover::after{transform:scaleX(1)}
+.h-icon{font-size:38px;margin-bottom:.9rem;display:block}
+.h-name{font-family:var(--serif);font-size:19px;font-weight:700;margin-bottom:.2rem}
+.h-tier{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.65rem;display:inline-block;padding:2px 7px}
+.h-weight{font-size:12px;font-weight:500;color:var(--g4);margin-bottom:.45rem}
+.h-inc{font-size:12px;font-weight:300;color:var(--gray);line-height:1.65;margin-bottom:.9rem}
+.h-price{font-size:19px;font-weight:700;margin-bottom:.2rem}
+.h-del-free{font-size:11px;color:var(--g4);font-weight:500;margin-bottom:.9rem}
+.h-del-paid{font-size:11px;color:var(--gray);margin-bottom:.9rem}
+.h-btn{width:100%;padding:9px;background:var(--ch);color:#fff;font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s;margin-bottom:5px}
+.h-btn:hover{background:var(--y1)}
+.h-wa{width:100%;padding:9px;background:#25D366;color:#fff;font-size:10px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s}
+.h-wa:hover{background:#1DA851}
+.vip-tag{position:absolute;top:14px;right:-22px;background:var(--y2);color:#fff;font-size:9px;font-weight:700;padding:4px 28px;transform:rotate(35deg)}
+.royal-tag{position:absolute;top:14px;right:-22px;background:var(--g4);color:#fff;font-size:9px;font-weight:700;padding:4px 28px;transform:rotate(35deg)}
+
+/* SMOOTHIES */
+#smoothies{background:var(--g1)}
+#smoothies .sec-title{color:#fff}
+#smoothies .sec-sub{color:rgba(255,255,255,.4)}
+.sm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px;background:rgba(255,255,255,.08)}
+.sm-card{background:rgba(255,255,255,.04);padding:1.6rem;transition:background .2s;position:relative}
+.sm-card:hover{background:rgba(255,255,255,.08)}
+.sm-icon{font-size:36px;margin-bottom:.8rem;display:block}
+.sm-name{font-family:var(--serif);font-size:17px;font-weight:700;color:#fff;margin-bottom:.3rem}
+.sm-fruits{font-size:11px;color:rgba(255,255,255,.45);margin-bottom:.7rem;line-height:1.5}
+.sm-price{font-size:16px;font-weight:600;color:var(--y3);margin-bottom:.85rem}
+.sm-btn{width:100%;padding:8px;background:var(--y1);color:#fff;font-size:10px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s}
+.sm-btn:hover{background:var(--y2)}
+
+/* STORY */
+#story{display:grid;grid-template-columns:1fr 1fr;min-height:520px;padding:0}
+.story-l{background:var(--c2);padding:6rem 5% 6rem 6%;display:flex;flex-direction:column;justify-content:center}
+.story-r{background:var(--g1);display:flex;align-items:center;justify-content:center;padding:4.5rem;position:relative;overflow:hidden}
+.story-r::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(212,168,12,.13) 0%,transparent 70%)}
+.story-p{font-size:13.5px;font-weight:300;line-height:1.95;color:#555;margin-bottom:1.25rem}
+.story-q{font-family:var(--serif);font-size:clamp(19px,2.3vw,28px);font-weight:700;line-height:1.55;color:#fff;text-align:center;position:relative;z-index:1}
+.story-q em{color:var(--y3);font-style:italic}
+.story-seal{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--y1);padding:8px 14px;margin-top:1.4rem}
+.story-seal span{font-size:11px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--y1)}
+
+/* ADDON */
+.addon-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:1px;background:var(--c3)}
+.ac{background:var(--c1);padding:1.4rem;text-align:center;transition:background .2s;cursor:pointer}
+.ac:hover{background:#fff}
+.ac-icon{font-size:30px;margin-bottom:.55rem;display:block}
+.ac-name{font-family:var(--serif);font-size:15px;font-weight:600;margin-bottom:.25rem}
+.ac-desc{font-size:11px;font-weight:300;color:var(--gray);line-height:1.5;margin-bottom:.6rem}
+.ac-price{font-size:14px;font-weight:600;margin-bottom:.6rem}
+.ac-btn{width:100%;padding:7px;background:var(--ch);color:#fff;font-size:10px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s}
+.ac-btn:hover{background:var(--y1)}
+
+/* FOOTER */
+footer{background:var(--ch);display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;padding:4.5rem 6%}
+.f-logo{font-family:var(--serif);font-size:24px;font-weight:800;color:#fff;margin-bottom:.9rem}
+.f-logo em{color:var(--y2);font-style:normal}
+.f-tag{font-size:12px;font-weight:300;color:rgba(255,255,255,.3);line-height:1.8;max-width:230px;margin-bottom:1.25rem}
+.f-contact a{display:block;font-size:12px;color:rgba(255,255,255,.45);text-decoration:none;margin-bottom:.35rem;transition:color .2s}
+.f-contact a:hover{color:var(--y3)}
+.f-heading{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--y2);margin-bottom:1.25rem}
+.f-links{list-style:none}
+.f-links li{margin-bottom:.6rem}
+.f-links a{font-size:12px;font-weight:300;color:rgba(255,255,255,.38);text-decoration:none;transition:color .2s}
+.f-links a:hover{color:#fff}
+.f-socials{display:flex;gap:8px;margin-top:.9rem}
+.fsoc{width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;font-size:13px;color:rgba(255,255,255,.35);text-decoration:none}
+.fsoc:hover{border-color:var(--y2);color:var(--y2)}
+.f-bottom{background:var(--ch);border-top:1px solid rgba(255,255,255,.05);padding:1.1rem 6%;display:flex;justify-content:space-between;align-items:center}
+.f-bl{font-size:11px;color:rgba(255,255,255,.16);letter-spacing:.04em}
+.f-cert{font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--y2);border:1px solid var(--y2);padding:3px 10px}
+
+/* TOAST */
+.toast{position:fixed;bottom:1.75rem;right:1.75rem;z-index:400;background:var(--g1);color:#fff;padding:.9rem 1.4rem;border-left:4px solid var(--y2);transform:translateX(130%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);max-width:270px;pointer-events:none}
+.toast.show{transform:translateX(0)}
+.toast-t{font-weight:600;font-size:13px;margin-bottom:2px}
+.toast-s{font-size:11px;opacity:.6}
+
+/* WA FAB */
+.wa-fab{position:fixed;bottom:1.75rem;left:1.75rem;z-index:300;width:50px;height:50px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:21px;cursor:pointer;box-shadow:0 4px 18px rgba(37,211,102,.32);transition:all .25s;text-decoration:none}
+.wa-fab:hover{transform:scale(1.1)}
+
+/* MOBILE */
+@media(max-width:900px){
+  .ann{display:none}
+  nav{top:0;padding:0 4%}
+  .nav-links,.nav-seal{display:none}
+  .hero{grid-template-columns:1fr;padding-top:58px}
+  .hero-l{padding:3rem 4% 2rem}
+  .hero-r{min-height:280px}
+  .sec{padding:4rem 4%}
+  .trust{grid-template-columns:1fr 1fr}
+  #story{grid-template-columns:1fr}
+  .story-l{padding:4rem 4%}
+  footer{grid-template-columns:1fr 1fr;padding:3rem 4%;gap:2rem}
+  .f-bottom{padding:1rem 4%;flex-direction:column;gap:.5rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- WA FAB -->
+<a class="wa-fab" href="https://wa.me/923433556817" target="_blank" title="Order on WhatsApp">💬</a>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-t">🥭 Added!</div>
+  <div class="toast-s" id="toastS">Item added to cart</div>
+</div>
+
+<!-- ANNOUNCEMENT -->
+<div class="ann">
+  <p>🇵🇰 Free Delivery All Over Pakistan on Orders Above PKR 2,299 <span>·</span> Season 2026 <span>·</span> Farm Direct · No Carbide · Real Weight · Bharosa Karo. Baar Baar.</p>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="logo" href="#">Be<em>Uncheated</em></a>
+  <ul class="nav-links">
+    <li><a href="#products">Mangoes</a></li>
+    <li><a href="#fruits">Fruits</a></li>
+    <li><a href="#jars">Jarfresh</a></li>
+    <li><a href="#smoothies">Smoothies</a></li>
+    <li><a href="#hampers">Hampers</a></li>
+    <li><a href="#subscriptions">Subscriptions</a></li>
+    <li><a href="#story">Our Story</a></li>
+  </ul>
+  <div class="nav-r">
+    <span class="nav-seal">Certified Uncheated ✓</span>
+    <button class="cart-btn" onclick="openCart()">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="cart-n" id="cartN">0</span>
+    </button>
+    <a class="nav-wa" href="https://wa.me/923433556817" target="_blank">💬 Order Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-l">
+    <div class="hero-badge">Season 2026 · Now Open · Karachi · Lahore · Pakistan Wide</div>
+    <h1 class="hero-h1">The Fruit Brand<br>That <em>Never<br>Cheated You</em></h1>
+    <p class="hero-tag"><strong>Tera ex cheated.</strong> Hamara mango never will.<br>Farm-direct · Carbide-free · Real weight · Free delivery all over Pakistan 🇵🇰</p>
+    <div class="hero-ctas">
+      <button class="btn-p" onclick="goTo('products')">Shop Mangoes</button>
+      <button class="btn-g" onclick="goTo('jars')">Jarfresh & Smoothies</button>
+    </div>
+    <div class="hero-stats">
+      <div><span class="stat-v">100%</span><span class="stat-l">No Carbide</span></div>
+      <div><span class="stat-v">7+</span><span class="stat-l">Varieties</span></div>
+      <div><span class="stat-v">🇵🇰</span><span class="stat-l">All Pakistan</span></div>
+    </div>
+  </div>
+  <div class="hero-r">
+    <div class="kiosk-wrap">
+      <svg viewBox="0 0 520 440" width="100%" max-width="520" style="border-radius:8px;filter:drop-shadow(0 30px 80px rgba(0,0,0,.55))">
+        <!-- Kiosk background -->
+        <rect width="520" height="440" fill="#0A1F0A" rx="8"/>
+        <!-- Top banner -->
+        <rect width="520" height="90" fill="#122012" rx="8"/>
+        <rect y="82" width="520" height="8" fill="#0A1F0A"/>
+        <!-- Logo circle -->
+        <circle cx="60" cy="45" r="32" fill="none" stroke="#D4A80C" stroke-width="2"/>
+        <text x="60" y="38" text-anchor="middle" font-family="Playfair Display,serif" font-size="10" fill="#D4A80C" font-weight="700">Be</text>
+        <text x="60" y="52" text-anchor="middle" font-family="Playfair Display,serif" font-size="8" fill="#D4A80C">Uncheated</text>
+        <!-- Brand name -->
+        <text x="260" y="38" text-anchor="middle" font-family="Playfair Display,serif" font-size="28" fill="#fff" font-weight="900">Be Uncheated</text>
+        <text x="260" y="56" text-anchor="middle" font-family="Outfit,sans-serif" font-size="11" fill="#D4A80C" letter-spacing="3">PREMIUM EXPORT QUALITY FRUITS</text>
+        <!-- Tagline pill -->
+        <rect x="165" y="63" width="190" height="20" rx="10" fill="#D4A80C"/>
+        <text x="260" y="76" text-anchor="middle" font-family="Outfit,sans-serif" font-size="10" fill="#fff" font-weight="600">bharosa karo bar bar 🌿</text>
+        <!-- Counter area -->
+        <rect x="20" y="98" width="480" height="240" fill="#0F280F"/>
+        <!-- Fruits display -->
+        <!-- Grapes -->
+        <ellipse cx="90" cy="200" rx="35" ry="40" fill="#4A1A6A"/>
+        <circle cx="78" cy="188" r="8" fill="#6A2A8A"/>
+        <circle cx="92" cy="182" r="8" fill="#7A3A9A"/>
+        <circle cx="106" cy="188" r="8" fill="#6A2A8A"/>
+        <circle cx="82" cy="198" r="8" fill="#7A3A9A"/>
+        <circle cx="98" cy="198" r="8" fill="#6A2A8A"/>
+        <circle cx="90" cy="210" r="8" fill="#7A3A9A"/>
+        <!-- Watermelon -->
+        <ellipse cx="170" cy="210" rx="40" ry="30" fill="#2D8A2D"/>
+        <ellipse cx="170" cy="210" rx="34" ry="24" fill="#E83030"/>
+        <circle cx="160" cy="208" r="3" fill="#181810"/>
+        <circle cx="172" cy="215" r="3" fill="#181810"/>
+        <circle cx="182" cy="205" r="3" fill="#181810"/>
+        <!-- Oranges -->
+        <circle cx="250" cy="205" r="25" fill="#E87010"/>
+        <circle cx="250" cy="205" r="22" fill="#F08018"/>
+        <circle cx="258" cy="195" r="4" fill="#F09028" opacity=".6"/>
+        <circle cx="280" cy="215" r="22" fill="#E87010"/>
+        <!-- Apples -->
+        <ellipse cx="355" cy="205" rx="22" ry="25" fill="#C82020"/>
+        <ellipse cx="355" cy="205" rx="18" ry="21" fill="#E83030"/>
+        <rect x="353" y="182" width="4" height="12" rx="2" fill="#5A3A0A"/>
+        <ellipse cx="382" cy="208" rx="20" ry="23" fill="#C82020"/>
+        <rect x="380" y="187" width="4" height="10" rx="2" fill="#5A3A0A"/>
+        <!-- Pineapple -->
+        <ellipse cx="450" cy="195" rx="22" ry="30" fill="#E8A010"/>
+        <path d="M435 175 Q450 155 465 175" fill="#2D6A10" stroke="none"/>
+        <path d="M440 170 Q450 148 460 170" fill="#3A7A18" stroke="none"/>
+        <!-- Box display right side -->
+        <rect x="350" y="100" width="140" height="80" fill="#1A3A1A" rx="4"/>
+        <rect x="355" y="105" width="130" height="70" fill="#0F280F" rx="3"/>
+        <text x="420" y="130" text-anchor="middle" font-family="Outfit,sans-serif" font-size="8" fill="#D4A80C" font-weight="600">BEUNCHEATED</text>
+        <text x="420" y="143" text-anchor="middle" font-family="Outfit,sans-serif" font-size="7" fill="rgba(255,255,255,.6)">PREMIUM MANGO BOX</text>
+        <text x="420" y="158" text-anchor="middle" font-family="Outfit,sans-serif" font-size="7" fill="#D4A80C">5kg · PKR 2,299</text>
+        <!-- Trust badges -->
+        <rect x="160" y="100" width="80" height="28" rx="14" fill="#1A3A1A"/>
+        <text x="200" y="118" text-anchor="middle" font-family="Outfit,sans-serif" font-size="8" fill="#D4A80C">🌿 No Carbide</text>
+        <rect x="250" y="100" width="80" height="28" rx="14" fill="#1A3A1A"/>
+        <text x="290" y="118" text-anchor="middle" font-family="Outfit,sans-serif" font-size="8" fill="#D4A80C">⚖️ Real Weight</text>
+        <!-- Counter front -->
+        <rect x="20" y="338" width="480" height="82" fill="#122012" rx="4"/>
+        <rect x="20" y="395" width="480" height="25" fill="#0A1F0A" rx="4"/>
+        <!-- Counter text -->
+        <text x="260" y="366" text-anchor="middle" font-family="Playfair Display,serif" font-size="20" fill="#fff" font-weight="900">Be Uncheated</text>
+        <text x="260" y="383" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" fill="#D4A80C" letter-spacing="2">PREMIUM EXPORT QUALITY FRUITS</text>
+        <!-- Bottom pill -->
+        <rect x="175" y="400" width="170" height="14" rx="7" fill="#D4A80C"/>
+        <text x="260" y="411" text-anchor="middle" font-family="Outfit,sans-serif" font-size="8" fill="#fff" font-weight="600">bharosa karo bar bar 🌿</text>
+        <!-- Left panel -->
+        <rect x="20" y="98" width="100" height="240" fill="#0F280F"/>
+        <text x="70" y="140" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" fill="#D4A80C" font-weight="600">Premium</text>
+        <text x="70" y="155" text-anchor="middle" font-family="Outfit,sans-serif" font-size="11" fill="#fff" font-weight="700">EXPORT</text>
+        <text x="70" y="170" text-anchor="middle" font-family="Outfit,sans-serif" font-size="11" fill="#fff" font-weight="700">QUALITY</text>
+        <text x="70" y="185" text-anchor="middle" font-family="Outfit,sans-serif" font-size="11" fill="#fff" font-weight="700">FRUITS</text>
+        <text x="70" y="215" text-anchor="middle" font-family="Outfit,sans-serif" font-size="8" fill="#D4A80C">🤝 Handpicked</text>
+        <text x="70" y="230" text-anchor="middle" font-family="Outfit,sans-serif" font-size="8" fill="#D4A80C">🌍 Export Quality</text>
+        <text x="70" y="245" text-anchor="middle" font-family="Outfit,sans-serif" font-size="8" fill="#D4A80C">✅ Freshness</text>
+        <text x="70" y="260" text-anchor="middle" font-family="Outfit,sans-serif" font-size="8" fill="#D4A80C">🛡️ Trusted</text>
+        <!-- Neon sign -->
+        <text x="230" y="300" text-anchor="middle" font-family="Playfair Display,serif" font-size="18" fill="#D4A80C" font-style="italic" opacity=".9">Bharosa</text>
+        <text x="230" y="322" text-anchor="middle" font-family="Playfair Display,serif" font-size="16" fill="#D4A80C" font-style="italic" opacity=".9">karo bar bar 🌿</text>
+      </svg>
+      <div class="kiosk-badge">Visit us · Lucky One Mall · Karachi · Coming 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="m-track">
+    <span class="m-item">Sindhri<span class="m-dot"></span></span>
+    <span class="m-item">Chaunsa<span class="m-dot"></span></span>
+    <span class="m-item">Anwar Ratol<span class="m-dot"></span></span>
+    <span class="m-item">White Chaunsa<span class="m-dot"></span></span>
+    <span class="m-item">Black Chaunsa<span class="m-dot"></span></span>
+    <span class="m-item">Langra<span class="m-dot"></span></span>
+    <span class="m-item">Dasehri<span class="m-dot"></span></span>
+    <span class="m-item">Jarfresh Jars<span class="m-dot"></span></span>
+    <span class="m-item">Fresh Smoothies<span class="m-dot"></span></span>
+    <span class="m-item">Gift Hampers<span class="m-dot"></span></span>
+    <span class="m-item">Farm Direct<span class="m-dot"></span></span>
+    <span class="m-item">No Carbide<span class="m-dot"></span></span>
+    <span class="m-item">Free Delivery 🇵🇰<span class="m-dot"></span></span>
+    <span class="m-item">Bharosa Karo<span class="m-dot"></span></span>
+    <span class="m-item">Sindhri<span class="m-dot"></span></span>
+    <span class="m-item">Chaunsa<span class="m-dot"></span></span>
+    <span class="m-item">Anwar Ratol<span class="m-dot"></span></span>
+    <span class="m-item">White Chaunsa<span class="m-dot"></span></span>
+    <span class="m-item">Black Chaunsa<span class="m-dot"></span></span>
+    <span class="m-item">Langra<span class="m-dot"></span></span>
+    <span class="m-item">Dasehri<span class="m-dot"></span></span>
+    <span class="m-item">Jarfresh Jars<span class="m-dot"></span></span>
+    <span class="m-item">Fresh Smoothies<span class="m-dot"></span></span>
+    <span class="m-item">Gift Hampers<span class="m-dot"></span></span>
+    <span class="m-item">Farm Direct<span class="m-dot"></span></span>
+    <span class="m-item">No Carbide<span class="m-dot"></span></span>
+    <span class="m-item">Free Delivery 🇵🇰<span class="m-dot"></span></span>
+    <span class="m-item">Bharosa Karo<span class="m-dot"></span></span>
+  </div>
+</div>
+
+<!-- TRUST -->
+<div class="trust">
+  <div class="trust-item"><span class="ti-icon">🌾</span><div class="ti-title">Farm Direct</div><div class="ti-desc">Mirpur Khas, Multan & Bahawalpur. Zero middlemen, zero mandi markups.</div></div>
+  <div class="trust-item"><span class="ti-icon">⚖️</span><div class="ti-title">Real Weight</div><div class="ti-desc">Every box weighed at the farm before dispatch. 5kg means exactly 5kg.</div></div>
+  <div class="trust-item"><span class="ti-icon">🚫</span><div class="ti-title">No Carbide Ever</div><div class="ti-desc">100% naturally ripened. Zero chemicals. Safe for your whole family.</div></div>
+  <div class="trust-item"><span class="ti-icon">🇵🇰</span><div class="ti-title">All Pakistan Free</div><div class="ti-desc">Free delivery on all orders above PKR 2,299. Every city. Every corner.</div></div>
+</div>
+
+<!-- MANGOES -->
+<section class="sec" id="products">
+  <div class="eyebrow">Season 2026 · Farm Direct</div>
+  <h2 class="sec-title">Premium Mango<br><em>Boxes</em></h2>
+  <p class="sec-sub">Seven varieties. Sourced directly from Pakistan's finest orchards. Real weight on every box — guaranteed.</p>
+  <div class="tab-row">
+    <button class="ptab active" onclick="showTab('m-t1',this)">Sindhri &amp; Chaunsa</button>
+    <button class="ptab" onclick="showTab('m-t2',this)">Premium Varieties</button>
+  </div>
+
+  <!-- TIER 1 -->
+  <div class="pgrid" id="tab-m-t1">
+    <div class="pcard">
+      <span class="pc-tag t-g">Season Favourite</span><span class="pc-icon">🥭</span>
+      <div class="pc-name">Sindhri — 2.5kg</div>
+      <div class="pc-desc">Queen of mangoes. Perfect starter box. Farm-direct from Mirpur Khas, Sindh.</div>
+      <div class="pc-price">PKR 999</div>
+      <div class="pc-del paid-del">Delivery added at checkout</div>
+      <button class="pc-btn" onclick="addCart('Sindhri 2.5kg','PKR 999')">Add to Cart</button>
+      <button class="pc-wa" onclick="waOrder('Sindhri 2.5kg - PKR 999')">💬 WhatsApp Order</button>
+    </div>
+    <div class="pcard">
+      <span class="pc-tag t-g">Most Popular</span><span class="pc-icon">🥭</span>
+      <div class="pc-name">Sindhri — 5kg</div>
+      <div class="pc-desc">The classic family box. Honey-sweet, fiberless, intensely fragrant. Season: May–July.</div>
+      <div class="pc-price">PKR 2,299</div>
+      <div class="pc-del free-del">✅ Free Delivery All Over Pakistan</div>
+      <button class="pc-btn" onclick="addCart('Sindhri 5kg','PKR 2,299')">Add to Cart</button>
+      <button class="pc-wa" onclick="waOrder('Sindhri 5kg - PKR 2,299')">💬 WhatsApp Order</button>
+    </div>
+    <div class="pcard">
+      <span class="pc-tag t-b">Best Value</span><span class="pc-icon">🥭🥭</span>
+      <div class="pc-name">Sindhri — 10kg</div>
+      <div class="pc-desc">Double the mangoes. Perfect for families, gifting, and stocking up for the season.</div>
+      <div class="pc-save">💰 Save PKR 500 vs 2× 5kg</div>
+      <div class="pc-price">PKR 3,999</div>
+      <div class="pc-del free-del">✅ Free Delivery All Over Pakistan</div>
+      <button class="pc-btn" onclick="addCart('Sindhri 10kg','PKR 3,999')">Add to Cart</button>
+      <button class="pc-wa" onclick="waOrder('Sindhri 10kg - PKR 3,999')">💬 WhatsApp Order</button>
+    </div>
+    <div class="pcard">
+      <span class="pc-tag t-g">King of Mangoes</span><span class="pc-icon">🥭</span>
+      <div class="pc-name">Chaunsa — 2.5kg</div>
+      <div class="pc-desc">The King arrives. Farm-direct from Multan. Perfect for first-time buyers.</div>
+      <div class="pc-price">PKR 999</div>
+      <div class="pc-del paid-del">Delivery added at checkout</div>
+      <button class="pc-btn" onclick="addCart('Chaunsa 2.5kg','PKR 999')">Add to Cart</button>
+      <button class="pc-wa" onclick="waOrder('Chaunsa 2.5kg - PKR 999')">💬 WhatsApp Order</button>
+    </div>
+    <div class="pcard">
+      <span class="pc-tag t-g">Best Seller</span><span class="pc-icon">🥭</span>
+      <div class="pc-name">Chaunsa — 5kg</div>
+      <div class="pc-desc">Intensely sweet, fiberless, unmistakable fragrance. Pakistan's most loved mango. July–August.</div>
+      <div class="pc-price">PKR 2,299</div>
+      <div class="pc-del free-del">✅ Free Delivery All Over Pakistan</div>
+      <button class="pc-btn" onclick="addCart('Chaunsa 5kg','PKR 2,299')">Add to Cart</button>
+      <button class="pc-wa" onclick="waOrder('Chaunsa 5kg - PKR 2,299')">💬 WhatsApp Order</button>
+    </div>
+    <div class="pcard">
+      <span class="pc-tag t-b">Best Value</span><span class="pc-icon">🥭🥭</span>
+      <div class="pc-name">Chaunsa — 10kg</div>
+      <div class="pc-desc">The ultimate Chaunsa experience. Corporate gifting hero. Free delivery nationwide.</div>
+      <div class="pc-save">💰 Save PKR 500 vs 2× 5kg</div>
+      <div class="pc-price">PKR 3,999</div>
+      <div class="pc-del free-del">✅ Free Delivery All Over Pakistan</div>
+      <button class="pc-btn" onclick="addCart('Chaunsa 10kg','PKR 3,999')">Add to Cart</button>
+      <button class="pc-wa" onclick="waOrder('Chaunsa 10kg - PKR 3,999')">💬 WhatsApp Order</button>
+    </div>
+  </div>
+
+  <!-- TIER 2 -->
+  <div class="pgrid hidden" id="tab-m-t2">
+    <div class="pcard"><span class="pc-tag t-r">Rare · 21 Days</span><span class="pc-icon">🥭</span><div class="pc-name">Anwar Ratol — 2.5kg</div><div class="pc-desc">The connoisseur's mango. Only 21 days in season. Tiny, intense, unforgettable.</div><div class="pc-price">PKR 999</div><div class="pc-del paid-del">Delivery at checkout</div><button class="pc-btn" onclick="addCart('Anwar Ratol 2.5kg','PKR 999')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Anwar Ratol 2.5kg - PKR 999')">💬 WhatsApp</button></div>
+    <div class="pcard"><span class="pc-tag t-r">Rare · 21 Days</span><span class="pc-icon">🥭</span><div class="pc-name">Anwar Ratol — 5kg</div><div class="pc-desc">Once it's gone it's gone. Intensely sweet, unbelievable fragrance. Limited stock.</div><div class="pc-price">PKR 2,750</div><div class="pc-del free-del">✅ Free Delivery Pakistan</div><button class="pc-btn" onclick="addCart('Anwar Ratol 5kg','PKR 2,750')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Anwar Ratol 5kg - PKR 2,750')">💬 WhatsApp</button></div>
+    <div class="pcard"><span class="pc-tag t-b">Best Value</span><span class="pc-icon">🥭🥭</span><div class="pc-name">Anwar Ratol — 10kg</div><div class="pc-desc">The rarest mango in the most generous quantity. Hand-selected. Free delivery.</div><div class="pc-save">💰 Save PKR 500</div><div class="pc-price">PKR 4,999</div><div class="pc-del free-del">✅ Free Delivery Pakistan</div><button class="pc-btn" onclick="addCart('Anwar Ratol 10kg','PKR 4,999')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Anwar Ratol 10kg - PKR 4,999')">💬 WhatsApp</button></div>
+    <div class="pcard"><span class="pc-tag t-g">August Special</span><span class="pc-icon">🤍</span><div class="pc-name">White Chaunsa — 5kg</div><div class="pc-desc">Pale golden, citrus-sweet, longer shelf life. The underrated masterpiece of August.</div><div class="pc-price">PKR 2,750</div><div class="pc-del free-del">✅ Free Delivery Pakistan</div><button class="pc-btn" onclick="addCart('White Chaunsa 5kg','PKR 2,750')">Add to Cart</button><button class="pc-wa" onclick="waOrder('White Chaunsa 5kg - PKR 2,750')">💬 WhatsApp</button></div>
+    <div class="pcard"><span class="pc-tag t-b">Best Value</span><span class="pc-icon">🤍🤍</span><div class="pc-name">White Chaunsa — 10kg</div><div class="pc-desc">Stock the season's most underrated variety. Free delivery nationwide.</div><div class="pc-save">💰 Save PKR 500</div><div class="pc-price">PKR 4,999</div><div class="pc-del free-del">✅ Free Delivery Pakistan</div><button class="pc-btn" onclick="addCart('White Chaunsa 10kg','PKR 4,999')">Add to Cart</button><button class="pc-wa" onclick="waOrder('White Chaunsa 10kg - PKR 4,999')">💬 WhatsApp</button></div>
+    <div class="pcard"><span class="pc-tag t-r">Farewell</span><span class="pc-icon">🖤</span><div class="pc-name">Black Chaunsa — 5kg</div><div class="pc-desc">The rarest Chaunsa. Bold, deep, extraordinary. When this arrives the season is almost over.</div><div class="pc-price">PKR 2,750</div><div class="pc-del free-del">✅ Free Delivery Pakistan</div><button class="pc-btn" onclick="addCart('Black Chaunsa 5kg','PKR 2,750')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Black Chaunsa 5kg - PKR 2,750')">💬 WhatsApp</button></div>
+    <div class="pcard"><span class="pc-tag t-b">Best Value</span><span class="pc-icon">🖤🖤</span><div class="pc-name">Black Chaunsa — 10kg</div><div class="pc-desc">Season's final masterpiece. Premium grade. Free nationwide delivery.</div><div class="pc-save">💰 Save PKR 500</div><div class="pc-price">PKR 4,999</div><div class="pc-del free-del">✅ Free Delivery Pakistan</div><button class="pc-btn" onclick="addCart('Black Chaunsa 10kg','PKR 4,999')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Black Chaunsa 10kg - PKR 4,999')">💬 WhatsApp</button></div>
+    <div class="pcard"><span class="pc-tag t-g">Classic</span><span class="pc-icon">🥭</span><div class="pc-name">Langra — 5kg</div><div class="pc-desc">Green-skinned, fibre-free, intensely aromatic. A staple of every Pakistani mango season.</div><div class="pc-price">PKR 2,750</div><div class="pc-del free-del">✅ Free Delivery Pakistan</div><button class="pc-btn" onclick="addCart('Langra 5kg','PKR 2,750')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Langra 5kg - PKR 2,750')">💬 WhatsApp</button></div>
+    <div class="pcard"><span class="pc-tag t-b">Best Value</span><span class="pc-icon">🥭🥭</span><div class="pc-name">Langra — 10kg</div><div class="pc-desc">The classic Langra for those who know. Family size. Free delivery everywhere.</div><div class="pc-save">💰 Save PKR 500</div><div class="pc-price">PKR 4,999</div><div class="pc-del free-del">✅ Free Delivery Pakistan</div><button class="pc-btn" onclick="addCart('Langra 10kg','PKR 4,999')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Langra 10kg - PKR 4,999')">💬 WhatsApp</button></div>
+    <div class="pcard"><span class="pc-tag t-g">Early Season</span><span class="pc-icon">🥭</span><div class="pc-name">Dasehri — 5kg</div><div class="pc-desc">Slim, golden, delicately sweet. One of the earliest varieties. Beloved across Pakistan.</div><div class="pc-price">PKR 2,750</div><div class="pc-del free-del">✅ Free Delivery Pakistan</div><button class="pc-btn" onclick="addCart('Dasehri 5kg','PKR 2,750')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Dasehri 5kg - PKR 2,750')">💬 WhatsApp</button></div>
+    <div class="pcard"><span class="pc-tag t-b">Best Value</span><span class="pc-icon">🥭🥭</span><div class="pc-name">Dasehri — 10kg</div><div class="pc-desc">Start the season right. 10kg of the earliest premium variety. Free delivery.</div><div class="pc-save">💰 Save PKR 500</div><div class="pc-price">PKR 4,999</div><div class="pc-del free-del">✅ Free Delivery Pakistan</div><button class="pc-btn" onclick="addCart('Dasehri 10kg','PKR 4,999')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Dasehri 10kg - PKR 4,999')">💬 WhatsApp</button></div>
+  </div>
+</section>
+
+<!-- OTHER FRUITS -->
+<section class="sec" id="fruits" style="background:var(--c2)">
+  <div class="eyebrow">BeUncheated Fresh Fruits</div>
+  <h2 class="sec-title">Seasonal Fruit<br><em>Boxes</em></h2>
+  <p class="sec-sub">Premium quality seasonal fruits in 2.5kg, 5kg and 10kg boxes. Delivered fresh all over Pakistan. More varieties coming soon.</p>
+  <div class="pgrid">
+    <div class="pcard"><span class="pc-tag t-g">Available</span><span class="pc-icon">🍌</span><div class="pc-name">Banana Box</div><div class="pc-desc">Fresh premium bananas. 2.5kg, 5kg and 10kg boxes available. Farm fresh daily.</div><div class="pc-price">From PKR 999</div><div class="pc-del paid-del">Delivery at checkout</div><button class="pc-btn" onclick="waOrder('Banana Box')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Banana Box')">💬 WhatsApp</button></div>
+    <div class="pcard"><span class="pc-tag t-g">Available</span><span class="pc-icon">🍎</span><div class="pc-name">Apple Box</div><div class="pc-desc">Premium quality apples. Crisp, sweet, and fresh. 2.5kg, 5kg and 10kg boxes.</div><div class="pc-price">From PKR 999</div><div class="pc-del paid-del">Delivery at checkout</div><button class="pc-btn" onclick="waOrder('Apple Box')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Apple Box')">💬 WhatsApp</button></div>
+    <div class="pcard"><span class="pc-tag t-g">Available</span><span class="pc-icon">🍊</span><div class="pc-name">Orange Box</div><div class="pc-desc">Juicy premium oranges. Perfect for fresh juice. 2.5kg, 5kg and 10kg boxes.</div><div class="pc-price">From PKR 999</div><div class="pc-del paid-del">Delivery at checkout</div><button class="pc-btn" onclick="waOrder('Orange Box')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Orange Box')">💬 WhatsApp</button></div>
+    <div class="cs-card"><span class="cs-icon">🍉</span><div class="cs-name">Watermelon Box</div><span class="cs-label">Coming Soon</span></div>
+    <div class="cs-card"><span class="cs-icon">🍍</span><div class="cs-name">Pineapple Box</div><span class="cs-label">Coming Soon</span></div>
+    <div class="cs-card"><span class="cs-icon">🍑</span><div class="cs-name">Peach Box</div><span class="cs-label">Coming Soon</span></div>
+    <div class="cs-card"><span class="cs-icon">🍇</span><div class="cs-name">Grape Box</div><span class="cs-label">Coming Soon</span></div>
+    <div class="cs-card"><span class="cs-icon">🍓</span><div class="cs-name">Strawberry Box</div><span class="cs-label">Coming Soon</span></div>
+    <div class="cs-card"><span class="cs-icon">🍈</span><div class="cs-name">Guava Box</div><span class="cs-label">Coming Soon</span></div>
+    <div class="cs-card"><span class="cs-icon">🧡</span><div class="cs-name">Papaya Box</div><span class="cs-label">Coming Soon</span></div>
+    <div class="cs-card"><span class="cs-icon">🍒</span><div class="cs-name">Pomegranate Box</div><span class="cs-label">Coming Soon</span></div>
+    <div class="cs-card"><span class="cs-icon">🫐</span><div class="cs-name">Lychee Box</div><span class="cs-label">Coming Soon</span></div>
+  </div>
+</section>
+
+<!-- JARFRESH -->
+<section class="sec" id="jars">
+  <div class="eyebrow">Jarfresh by BeUncheated</div>
+  <h2 class="sec-title">Fresh Fruit<br><em>Jars &amp; Combos</em></h2>
+  <p class="sec-sub">Daily fresh-cut fruit in 350g and 500g jars. Single fruits and premium multi-fruit combinations. No preservatives. Delivered fresh.</p>
+  <div class="tab-row">
+    <button class="ptab active" onclick="showTab('j-single',this)">Single Fruit Jars</button>
+    <button class="ptab" onclick="showTab('j-combo',this)">Combo Jars</button>
+  </div>
+  <!-- SINGLE -->
+  <div class="pgrid" id="tab-j-single">
+    <div class="pcard"><span class="pc-tag t-g">Season Special</span><span class="pc-icon">🥭</span><div class="pc-name">Mango Jar</div><div class="pc-desc">Fresh-cut Sindhri or Chaunsa. Pre-portioned, ready to blend or eat. Consume within 24hrs.</div><div class="pc-price">PKR 249 <span style="font-size:13px;color:var(--gray)">350g</span> &nbsp;·&nbsp; PKR 349 <span style="font-size:13px;color:var(--gray)">500g</span></div><div class="pc-del paid-del">Delivery at checkout</div><button class="pc-btn" onclick="addCart('Mango Jar','PKR 249/349')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Mango Jar')">💬 WhatsApp</button></div>
+    <div class="pcard"><span class="pc-tag t-y">Best Value</span><span class="pc-icon">🍉</span><div class="pc-name">Watermelon Jar</div><div class="pc-desc">Seedless watermelon cubes. Summer's sweetest refresh. One jar equals one full glass of juice.</div><div class="pc-price">PKR 249 <span style="font-size:13px;color:var(--gray)">350g</span> &nbsp;·&nbsp; PKR 349 <span style="font-size:13px;color:var(--gray)">500g</span></div><div class="pc-del paid-del">Delivery at checkout</div><button class="pc-btn" onclick="addCart('Watermelon Jar','PKR 249/349')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Watermelon Jar')">💬 WhatsApp</button></div>
+    <div class="pcard"><span class="pc-tag t-g">Year Round</span><span class="pc-icon">🧡</span><div class="pc-name">Papaya Jar</div><div class="pc-desc">Ripe papaya cubes. Digestive powerhouse. Naturally sweet. Available all year.</div><div class="pc-price">PKR 249 <span style="font-size:13px;color:var(--gray)">350g</span> &nbsp;·&nbsp; PKR 349 <span style="font-size:13px;color:var(--gray)">500g</span></div><div class="pc-del paid-del">Delivery at checkout</div><button class="pc-btn" onclick="addCart('Papaya Jar','PKR 249/349')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Papaya Jar')">💬 WhatsApp</button></div>
+    <div class="pcard"><span class="pc-tag t-r">Tropical</span><span class="pc-icon">🍍</span><div class="pc-name">Pineapple Jar</div><div class="pc-desc">Fresh pineapple chunks, core removed. Tropical sweetness ready in seconds.</div><div class="pc-price">PKR 299 <span style="font-size:13px;color:var(--gray)">350g</span> &nbsp;·&nbsp; PKR 399 <span style="font-size:13px;color:var(--gray)">500g</span></div><div class="pc-del paid-del">Delivery at checkout</div><button class="pc-btn" onclick="addCart('Pineapple Jar','PKR 299/399')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Pineapple Jar')">💬 WhatsApp</button></div>
+    <div class="pcard"><span class="pc-tag t-g">Year Round</span><span class="pc-icon">💚</span><div class="pc-name">Guava Jar</div><div class="pc-desc">Sliced guava, seeds removed. Pakistan's favourite fruit — clean, cut, ready to enjoy.</div><div class="pc-price">PKR 299 <span style="font-size:13px;color:var(--gray)">350g</span> &nbsp;·&nbsp; PKR 399 <span style="font-size:13px;color:var(--gray)">500g</span></div><div class="pc-del paid-del">Delivery at checkout</div><button class="pc-btn" onclick="addCart('Guava Jar','PKR 299/399')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Guava Jar')">💬 WhatsApp</button></div>
+    <div class="pcard"><span class="pc-tag t-r">Seasonal</span><span class="pc-icon">🍓</span><div class="pc-name">Strawberry Jar</div><div class="pc-desc">Fresh strawberries. Seasonal, rare, beautiful. Limited quantities. Oct–Feb only.</div><div class="pc-price">PKR 299 <span style="font-size:13px;color:var(--gray)">350g</span> &nbsp;·&nbsp; PKR 399 <span style="font-size:13px;color:var(--gray)">500g</span></div><div class="pc-del paid-del">Delivery at checkout</div><button class="pc-btn" onclick="addCart('Strawberry Jar','PKR 299/399')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Strawberry Jar')">💬 WhatsApp</button></div>
+  </div>
+  <!-- COMBO -->
+  <div class="pgrid hidden" id="tab-j-combo">
+    <div class="pcard"><span class="pc-tag t-y">Signature Blend</span><span class="pc-icon">🥭🍍🧡🍌</span><div class="pc-name">Tropical Fiesta</div><div class="pc-desc">Mango + Pineapple + Papaya + Banana. The ultimate tropical combination. Summer in every bite.</div><div class="pc-price">PKR 399 <span style="font-size:13px;color:var(--gray)">350g</span> &nbsp;·&nbsp; PKR 499 <span style="font-size:13px;color:var(--gray)">500g</span></div><div class="pc-del paid-del">Delivery at checkout</div><button class="pc-btn" onclick="addCart('Tropical Fiesta Jar','PKR 399/499')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Tropical Fiesta Jar')">💬 WhatsApp</button></div>
+    <div class="pcard"><span class="pc-tag t-y">Signature Blend</span><span class="pc-icon">🍓🍇🍎💚</span><div class="pc-name">Berry Garden</div><div class="pc-desc">Strawberry + Grape + Pomegranate + Apple. Nature's best berries and antioxidants in one jar.</div><div class="pc-price">PKR 399 <span style="font-size:13px;color:var(--gray)">350g</span> &nbsp;·&nbsp; PKR 499 <span style="font-size:13px;color:var(--gray)">500g</span></div><div class="pc-del paid-del">Delivery at checkout</div><button class="pc-btn" onclick="addCart('Berry Garden Jar','PKR 399/499')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Berry Garden Jar')">💬 WhatsApp</button></div>
+    <div class="pcard"><span class="pc-tag t-y">Signature Blend</span><span class="pc-icon">🍊🍎💚🍍</span><div class="pc-name">Citrus Burst</div><div class="pc-desc">Orange + Apple + Guava + Pineapple. Vitamin-packed citrus explosion. Morning energy in a jar.</div><div class="pc-price">PKR 399 <span style="font-size:13px;color:var(--gray)">350g</span> &nbsp;·&nbsp; PKR 499 <span style="font-size:13px;color:var(--gray)">500g</span></div><div class="pc-del paid-del">Delivery at checkout</div><button class="pc-btn" onclick="addCart('Citrus Burst Jar','PKR 399/499')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Citrus Burst Jar')">💬 WhatsApp</button></div>
+    <div class="pcard"><span class="pc-tag t-y">Signature Blend</span><span class="pc-icon">🥭🍉🍑🍌</span><div class="pc-name">Summer Mix</div><div class="pc-desc">Mango + Watermelon + Peach + Banana. The quintessential Pakistani summer jar. Pure bliss.</div><div class="pc-price">PKR 399 <span style="font-size:13px;color:var(--gray)">350g</span> &nbsp;·&nbsp; PKR 499 <span style="font-size:13px;color:var(--gray)">500g</span></div><div class="pc-del paid-del">Delivery at checkout</div><button class="pc-btn" onclick="addCart('Summer Mix Jar','PKR 399/499')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Summer Mix Jar')">💬 WhatsApp</button></div>
+    <div class="pcard"><span class="pc-tag t-y">Signature Blend</span><span class="pc-icon">🍌🍎🧡💚🌿</span><div class="pc-name">Power Fruit</div><div class="pc-desc">Banana + Apple + Papaya + Guava + Dates. The ultimate energy and wellness jar. Fuel your day.</div><div class="pc-price">PKR 399 <span style="font-size:13px;color:var(--gray)">350g</span> &nbsp;·&nbsp; PKR 499 <span style="font-size:13px;color:var(--gray)">500g</span></div><div class="pc-del paid-del">Delivery at checkout</div><button class="pc-btn" onclick="addCart('Power Fruit Jar','PKR 399/499')">Add to Cart</button><button class="pc-wa" onclick="waOrder('Power Fruit Jar')">💬 WhatsApp</button></div>
+  </div>
+</section>
+
+<!-- SMOOTHIES -->
+<section class="sec" id="smoothies">
+  <div class="eyebrow">Jarfresh Smoothies · Available at Kiosk</div>
+  <h2 class="sec-title" style="color:#fff">Fresh Blended<br><em>Smoothies</em></h2>
+  <p class="sec-sub">Made fresh to order. Real fruit. No artificial flavours. No preservatives. Classic singles, signature blends, and premium dry fruit shakes.</p>
+  <div class="tab-row" style="border-color:rgba(255,255,255,.15)">
+    <button class="ptab active" onclick="showTab('sm-c',this)" style="color:rgba(255,255,255,.4)">Classic</button>
+    <button class="ptab" onclick="showTab('sm-s',this)" style="color:rgba(255,255,255,.4)">Signature Blends</button>
+    <button class="ptab" onclick="showTab('sm-d',this)" style="color:rgba(255,255,255,.4)">Dry Fruit Shakes</button>
+  </div>
+  <!-- CLASSIC -->
+  <div class="sm-grid" id="tab-sm-c">
+    <div class="sm-card"><span class="sm-icon">🥭</span><div class="sm-name">Mango Blast</div><div class="sm-fruits">Pure Sindhri or Chaunsa · 350ml</div><div class="sm-price">PKR 349</div><button class="sm-btn" onclick="addCart('Mango Blast Smoothie','PKR 349')">Order</button></div>
+    <div class="sm-card"><span class="sm-icon">🍉</span><div class="sm-name">Watermelon Chill</div><div class="sm-fruits">Fresh seedless watermelon · Mint · 350ml</div><div class="sm-price">PKR 299</div><button class="sm-btn" onclick="addCart('Watermelon Chill Smoothie','PKR 299')">Order</button></div>
+    <div class="sm-card"><span class="sm-icon">🍓</span><div class="sm-name">Strawberry Dream</div><div class="sm-fruits">Fresh strawberries · Honey · 350ml</div><div class="sm-price">PKR 349</div><button class="sm-btn" onclick="addCart('Strawberry Dream Smoothie','PKR 349')">Order</button></div>
+    <div class="sm-card"><span class="sm-icon">🧡</span><div class="sm-name">Papaya Glow</div><div class="sm-fruits">Ripe papaya · Lime · Honey · 350ml</div><div class="sm-price">PKR 299</div><button class="sm-btn" onclick="addCart('Papaya Glow Smoothie','PKR 299')">Order</button></div>
+    <div class="sm-card"><span class="sm-icon">🍌</span><div class="sm-name">Banana Bliss</div><div class="sm-fruits">Fresh banana · Milk · Honey · 350ml</div><div class="sm-price">PKR 299</div><button class="sm-btn" onclick="addCart('Banana Bliss Smoothie','PKR 299')">Order</button></div>
+    <div class="sm-card"><span class="sm-icon">🍊</span><div class="sm-name">Orange Fresh</div><div class="sm-fruits">Freshly squeezed orange · 350ml</div><div class="sm-price">PKR 299</div><button class="sm-btn" onclick="addCart('Orange Fresh Smoothie','PKR 299')">Order</button></div>
+  </div>
+  <!-- SIGNATURE -->
+  <div class="sm-grid hidden" id="tab-sm-s">
+    <div class="sm-card"><span class="sm-icon">🌴</span><div class="sm-name">Tropical Storm</div><div class="sm-fruits">Mango + Pineapple + Banana · 400ml</div><div class="sm-price">PKR 399</div><button class="sm-btn" onclick="addCart('Tropical Storm Smoothie','PKR 399')">Order</button></div>
+    <div class="sm-card"><span class="sm-icon">🌺</span><div class="sm-name">Berry Burst</div><div class="sm-fruits">Strawberry + Grape + Pomegranate · 400ml</div><div class="sm-price">PKR 449</div><button class="sm-btn" onclick="addCart('Berry Burst Smoothie','PKR 449')">Order</button></div>
+    <div class="sm-card"><span class="sm-icon">🍃</span><div class="sm-name">Green Machine</div><div class="sm-fruits">Guava + Apple + Banana + Mint · 400ml</div><div class="sm-price">PKR 399</div><button class="sm-btn" onclick="addCart('Green Machine Smoothie','PKR 399')">Order</button></div>
+    <div class="sm-card"><span class="sm-icon">🌅</span><div class="sm-name">Sunset Blend</div><div class="sm-fruits">Mango + Papaya + Orange · 400ml</div><div class="sm-price">PKR 399</div><button class="sm-btn" onclick="addCart('Sunset Blend Smoothie','PKR 399')">Order</button></div>
+    <div class="sm-card"><span class="sm-icon">⚡</span><div class="sm-name">Power Punch</div><div class="sm-fruits">Banana + Apple + Papaya + Dates · 400ml</div><div class="sm-price">PKR 449</div><button class="sm-btn" onclick="addCart('Power Punch Smoothie','PKR 449')">Order</button></div>
+    <div class="sm-card"><span class="sm-icon">✨</span><div class="sm-name">Golden Glow</div><div class="sm-fruits">Mango + Orange + Banana + Honey · 400ml</div><div class="sm-price">PKR 399</div><button class="sm-btn" onclick="addCart('Golden Glow Smoothie','PKR 399')">Order</button></div>
+  </div>
+  <!-- DRY FRUIT -->
+  <div class="sm-grid hidden" id="tab-sm-d">
+    <div class="sm-card"><span class="sm-icon">🥜</span><div class="sm-name">Royal Almond Shake</div><div class="sm-fruits">Banana + Almonds + Milk + Sidr Honey · 400ml</div><div class="sm-price">PKR 499</div><button class="sm-btn" onclick="addCart('Royal Almond Shake','PKR 499')">Order</button></div>
+    <div class="sm-card"><span class="sm-icon">🌿</span><div class="sm-name">Pistachio Dream</div><div class="sm-fruits">Mango + Pistachio + Milk + Honey · 400ml</div><div class="sm-price">PKR 549</div><button class="sm-btn" onclick="addCart('Pistachio Dream Shake','PKR 549')">Order</button></div>
+    <div class="sm-card"><span class="sm-icon">🌙</span><div class="sm-name">Dates Power Shake</div><div class="sm-fruits">Dates + Banana + Milk + Black Seeds · 400ml</div><div class="sm-price">PKR 499</div><button class="sm-btn" onclick="addCart('Dates Power Shake','PKR 499')">Order</button></div>
+    <div class="sm-card"><span class="sm-icon">🧠</span><div class="sm-name">Walnut Wellness</div><div class="sm-fruits">Apple + Walnut + Banana + Honey · 400ml</div><div class="sm-price">PKR 549</div><button class="sm-btn" onclick="addCart('Walnut Wellness Shake','PKR 549')">Order</button></div>
+    <div class="sm-card"><span class="sm-icon">👑</span><div class="sm-name">Ultimate Energy</div><div class="sm-fruits">Mango + Almond + Pistachio + Dates + Honey · 400ml</div><div class="sm-price">PKR 599</div><button class="sm-btn" onclick="addCart('Ultimate Energy Shake','PKR 599')">Order</button></div>
+    <div class="sm-card"><span class="sm-icon">💪</span><div class="sm-name">Protein Boost</div><div class="sm-fruits">Banana + Almond + Walnut + Milk + Black Seeds · 400ml</div><div class="sm-price">PKR 549</div><button class="sm-btn" onclick="addCart('Protein Boost Shake','PKR 549')">Order</button></div>
+  </div>
+</section>
+
+<!-- HAMPERS -->
+<section class="sec" id="hampers" style="background:var(--c2)">
+  <div class="eyebrow">Gift Beautifully</div>
+  <h2 class="sec-title">Premium<br><em>Gift Hampers</em></h2>
+  <p class="sec-sub">Five gift hamper tiers for every occasion. Every hamper arrives in a beautiful gift-ready basket tray — premium presentation guaranteed.</p>
+  <div class="hgrid">
+    <div class="hcard">
+      <span class="h-icon">🧺</span>
+      <span class="h-tier" style="background:var(--g4);color:#fff">Starter Gift</span>
+      <div class="h-name">The Sweet Hello</div>
+      <div class="h-weight">🥭 3kg Premium Mangoes</div>
+      <div class="h-inc">Gift basket tray · 5 assorted local chocolates · Cellophane wrap · Raffia ribbon &amp; bow · BeUncheated insert card · Gift-ready presentation</div>
+      <div class="h-price">PKR 1,499</div>
+      <div class="h-del-paid">+ Delivery added at checkout</div>
+      <button class="h-btn" onclick="addCart('Sweet Hello Hamper','PKR 1,499')">Add to Cart</button>
+      <button class="h-wa" onclick="waOrder('Sweet Hello Hamper - PKR 1,499')">💬 WhatsApp</button>
+    </div>
+    <div class="hcard">
+      <span class="h-icon">🧺🍫</span>
+      <span class="h-tier" style="background:var(--y1);color:#fff">Classic</span>
+      <div class="h-name">The Classic Joy</div>
+      <div class="h-weight">🥭 4kg Premium Mangoes</div>
+      <div class="h-inc">Gift basket tray · Kunafa chocolate · Dairy Milk (large) · Pakola juice (choice of flavour) · Ribbon &amp; cellophane wrap · Insert card</div>
+      <div class="h-price">PKR 2,999</div>
+      <div class="h-del-free">✅ Free Delivery All Over Pakistan</div>
+      <button class="h-btn" onclick="addCart('Classic Joy Hamper','PKR 2,999')">Add to Cart</button>
+      <button class="h-wa" onclick="waOrder('Classic Joy Hamper - PKR 2,999')">💬 WhatsApp</button>
+    </div>
+    <div class="hcard">
+      <span class="h-icon">🧺✨</span>
+      <span class="h-tier" style="background:var(--g3);color:#fff">Premium</span>
+      <div class="h-name">The Premium Select</div>
+      <div class="h-weight">🥭 4kg Premium Mangoes</div>
+      <div class="h-inc">Gift basket tray · Kunafa chocolate · Dairy Milk (large) · Pakola juice · Milkpak flavoured milk · 250g premium dry fruits · Black seed honey sachet · Tissue wrap &amp; gift tag</div>
+      <div class="h-price">PKR 3,999</div>
+      <div class="h-del-free">✅ Free Delivery All Over Pakistan</div>
+      <button class="h-btn" onclick="addCart('Premium Select Hamper','PKR 3,999')">Add to Cart</button>
+      <button class="h-wa" onclick="waOrder('Premium Select Hamper - PKR 3,999')">💬 WhatsApp</button>
+    </div>
+    <div class="hcard" style="border:2px solid var(--g4);overflow:hidden">
+      <div class="royal-tag">ROYAL</div>
+      <span class="h-icon">🧺👑</span>
+      <span class="h-tier" style="background:#7A6010;color:#fff">👑 Royal</span>
+      <div class="h-name">The Royal Treat</div>
+      <div class="h-weight">🥭 5kg Hand-Picked Mangoes</div>
+      <div class="h-inc">Large basket tray · Kunafa chocolate · Dairy Milk · 2× Pakola juices · Milkpak milk + cream · 250g luxury dry fruits · Sidr honey 100ml · Black seeds 50g · Gold ribbon · Personalised gift tag · Royal wax seal</div>
+      <div style="font-size:11px;font-weight:600;color:#7A6010;margin-bottom:.65rem;letter-spacing:.07em">✦ HANDPICKED · EXCLUSIVE · PREMIUM SELECTION ✦</div>
+      <div class="h-price">PKR 4,999</div>
+      <div class="h-del-free">✅ Free Delivery All Over Pakistan</div>
+      <button class="h-btn" onclick="addCart('Royal Treat Hamper','PKR 4,999')" style="background:#7A6010">Add to Cart</button>
+      <button class="h-wa" onclick="waOrder('Royal Treat Hamper - PKR 4,999')">💬 WhatsApp</button>
+    </div>
+    <div class="hcard" style="border:2px solid var(--y2);overflow:hidden">
+      <div class="vip-tag">VIP</div>
+      <span class="h-icon">🧺💎</span>
+      <span class="h-tier" style="background:var(--y1);color:#fff">💎 VIP Signature</span>
+      <div class="h-name">The VIP Signature</div>
+      <div class="h-weight">🥭 6kg Ultra-Premium Hand-Selected Mangoes</div>
+      <div class="h-inc">Oversized premium basket tray · Kunafa chocolate · 2× Dairy Milk · 2× Pakola juices · Milkpak milk + cream · 500g luxury dry fruits · Sidr honey 250ml · Black seeds 100g · Stuffed dates 200g · Custom handwritten message card · Gold satin ribbon · Premium black tissue wrap · VIP embossed seal · BeUncheated branded carry bag</div>
+      <div style="font-size:11px;font-weight:700;color:var(--y1);margin-bottom:.5rem;letter-spacing:.07em">✦ VIP · ULTRA-PREMIUM · ONLY FOR THE SPECIAL ONES ✦</div>
+      <div style="font-size:11px;color:var(--gray);margin-bottom:.75rem;font-style:italic">Limited availability each season.</div>
+      <div class="h-price">PKR 6,499</div>
+      <div class="h-del-free">✅ Free Delivery All Over Pakistan</div>
+      <button class="h-btn" onclick="addCart('VIP Signature Hamper','PKR 6,499')" style="background:var(--y1)">Add to Cart</button>
+      <button class="h-wa" onclick="waOrder('VIP Signature Hamper - PKR 6,499')">💬 WhatsApp</button>
+    </div>
+  </div>
+</section>
+
+<!-- SUBSCRIPTIONS -->
+<section class="sec" id="subscriptions">
+  <div class="eyebrow">Never Miss a Saturday</div>
+  <h2 class="sec-title">Season<br><em>Subscriptions</em></h2>
+  <p class="sec-sub">Fresh mangoes every Saturday. Choose your size and frequency. 50% upfront, 50% installment. No hidden discounts — full honest price.</p>
+  <div style="background:rgba(255,255,255,.06);padding:.9rem 1.4rem;margin-bottom:1.75rem;border-left:3px solid var(--y2)">
+    <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.7">📅 Every Saturday delivery · Seasonal variety rotates with harvest · 50% upfront + 50% installment · Custom variant available · <a href="https://wa.me/923433556817" style="color:var(--y3);text-decoration:none">Contact us on WhatsApp</a></p>
+  </div>
+  <div class="sub-grid">
+    <div class="sub-card">
+      <div class="sub-ey">Every Saturday</div>
+      <div class="sub-name">Weekly Box</div>
+      <div class="sub-price" id="wp">PKR 2,199</div>
+      <div class="sub-cad">1 box every Saturday · ~16 deliveries per season</div>
+      <select class="sub-sel" onchange="updatePrice('wp',this)">
+        <option value="2199">5kg Sindhri / Chaunsa — PKR 2,199/delivery</option>
+        <option value="2599">5kg Premium Varieties — PKR 2,599/delivery</option>
+        <option value="4249">10kg Sindhri / Chaunsa — PKR 4,249/delivery</option>
+        <option value="4699">10kg Premium Varieties — PKR 4,699/delivery</option>
+      </select>
+      <ul class="sub-ul">
+        <li>Fresh delivery every Saturday all season</li>
+        <li>Seasonal variety at harvest peak</li>
+        <li>50% upfront · 50% installment</li>
+        <li>Free delivery on every box</li>
+        <li>Custom variant on WhatsApp request</li>
+      </ul>
+      <button class="sub-btn" onclick="waOrder('Weekly Subscription')">💬 Subscribe on WhatsApp</button>
+    </div>
+    <div class="sub-card feat">
+      <div class="feat-pill">Most Popular</div>
+      <div class="sub-ey">Every 2 Saturdays</div>
+      <div class="sub-name">Biweekly Box</div>
+      <div class="sub-price" id="bwp">PKR 2,199</div>
+      <div class="sub-cad">1 box every 2 Saturdays · ~8 deliveries per season</div>
+      <select class="sub-sel" onchange="updatePrice('bwp',this)">
+        <option value="2199">5kg Sindhri / Chaunsa — PKR 2,199/delivery</option>
+        <option value="2599">5kg Premium Varieties — PKR 2,599/delivery</option>
+        <option value="4249">10kg Sindhri / Chaunsa — PKR 4,249/delivery</option>
+        <option value="4699">10kg Premium Varieties — PKR 4,699/delivery</option>
+      </select>
+      <ul class="sub-ul">
+        <li>Surprise variety — season's best each time</li>
+        <li>Priority dispatch before individual orders</li>
+        <li>50% upfront · 50% installment</li>
+        <li>Free delivery on every box</li>
+        <li>Custom variant always available</li>
+        <li>Early access to next season booking</li>
+      </ul>
+      <button class="sub-btn" onclick="waOrder('Biweekly Subscription')">💬 Subscribe on WhatsApp</button>
+    </div>
+    <div class="sub-card">
+      <div class="sub-ey">Once a Month</div>
+      <div class="sub-name">Monthly Box</div>
+      <div class="sub-price" id="mp">PKR 2,199</div>
+      <div class="sub-cad">1 box per month · ~4 deliveries per season</div>
+      <select class="sub-sel" onchange="updatePrice('mp',this)">
+        <option value="2199">5kg Sindhri / Chaunsa — PKR 2,199/delivery</option>
+        <option value="2599">5kg Premium Varieties — PKR 2,599/delivery</option>
+        <option value="4249">10kg Sindhri / Chaunsa — PKR 4,249/delivery</option>
+        <option value="4699">10kg Premium Varieties — PKR 4,699/delivery</option>
+      </select>
+      <ul class="sub-ul">
+        <li>One premium box per month</li>
+        <li>Different variety every month</li>
+        <li>50% upfront · 50% installment</li>
+        <li>Free delivery every month</li>
+        <li>Custom variant on request</li>
+      </ul>
+      <button class="sub-btn" onclick="waOrder('Monthly Subscription')">💬 Subscribe on WhatsApp</button>
+    </div>
+  </div>
+  <p style="font-size:11px;color:rgba(255,255,255,.25);text-align:center;margin-top:1.4rem">Prices shown are per delivery at full retail price. No discounts. Transparent and honest always.</p>
+</section>
+
+<!-- ADD-ONS -->
+<section class="sec" id="addons">
+  <div class="eyebrow">Complete the Experience</div>
+  <h2 class="sec-title">Healthy<br><em>Add-Ons</em></h2>
+  <p class="sec-sub">Premium healthy extras alongside your mango boxes and fruit jars. All sourced with the same BeUncheated honesty.</p>
+  <div class="addon-grid">
+    <div class="ac"><span class="ac-icon">🍯</span><div class="ac-name">Sidr Honey 250g</div><div class="ac-desc">Raw, unfiltered Sidr honey. Perfect mango companion.</div><div class="ac-price">PKR 1,800</div><button class="ac-btn" onclick="addCart('Sidr Honey','PKR 1,800')">Add</button></div>
+    <div class="ac"><span class="ac-icon">🌙</span><div class="ac-name">Ajwa Dates 250g</div><div class="ac-desc">Premium Saudi Ajwa dates. Individually packed.</div><div class="ac-price">PKR 950</div><button class="ac-btn" onclick="addCart('Ajwa Dates','PKR 950')">Add</button></div>
+    <div class="ac"><span class="ac-icon">🌙✨</span><div class="ac-name">Stuffed Dates 200g</div><div class="ac-desc">Dates filled with pistachio and almond. Luxury.</div><div class="ac-price">PKR 1,200</div><button class="ac-btn" onclick="addCart('Stuffed Dates','PKR 1,200')">Add</button></div>
+    <div class="ac"><span class="ac-icon">🥜</span><div class="ac-name">Dry Fruits Mix 150g</div><div class="ac-desc">Pistachio, almond, walnut. Premium grade.</div><div class="ac-price">PKR 750</div><button class="ac-btn" onclick="addCart('Dry Fruits Mix','PKR 750')">Add</button></div>
+    <div class="ac"><span class="ac-icon">🌿</span><div class="ac-name">Black Seeds 100g</div><div class="ac-desc">Pure kalonji. Health in every spoon.</div><div class="ac-price">PKR 350</div><button class="ac-btn" onclick="addCart('Black Seeds','PKR 350')">Add</button></div>
+    <div class="ac"><span class="ac-icon">🥛</span><div class="ac-name">Milkpak Fl. Milk</div><div class="ac-desc">Mango or strawberry flavoured milk.</div><div class="ac-price">PKR 120</div><button class="ac-btn" onclick="addCart('Milkpak Fl Milk','PKR 120')">Add</button></div>
+    <div class="ac"><span class="ac-icon">🥛</span><div class="ac-name">Milkpak Cream</div><div class="ac-desc">Fresh cream for mango and cream lovers.</div><div class="ac-price">PKR 95</div><button class="ac-btn" onclick="addCart('Milkpak Cream','PKR 95')">Add</button></div>
+    <div class="ac"><span class="ac-icon">🧃</span><div class="ac-name">Milkpak Juice</div><div class="ac-desc">Milkpak fruit juices. Mixed flavours.</div><div class="ac-price">PKR 110</div><button class="ac-btn" onclick="addCart('Milkpak Juice','PKR 110')">Add</button></div>
+    <div class="ac"><span class="ac-icon">🥤</span><div class="ac-name">Pakola Original</div><div class="ac-desc">Iconic original Pakola. Pure nostalgia.</div><div class="ac-price">PKR 80</div><button class="ac-btn" onclick="addCart('Pakola Original','PKR 80')">Add</button></div>
+    <div class="ac"><span class="ac-icon">🧃</span><div class="ac-name">Pakola Appy Juice</div><div class="ac-desc">Pakola Appy and fruit juices. Choice of flavour.</div><div class="ac-price">PKR 90</div><button class="ac-btn" onclick="addCart('Pakola Juice','PKR 90')">Add</button></div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+  <div class="story-l">
+    <div class="eyebrow">The Founder</div>
+    <h2 class="sec-title">Built After<br><em>Being Cheated</em></h2>
+    <p class="story-p">I had everything. A successful ecommerce company. Two offices. A life built from nothing through years of relentless work. Then in six months — it was gone. Not through bad decisions. Not through market forces. Through the most deliberate kind of betrayal by someone I trusted completely.</p>
+    <p class="story-p">I lost my business. I lost my money. I lost my assets. And for a while — I lost myself. The road back was not fast. It was not clean. It was the hardest thing I have ever done.</p>
+    <p class="story-p">But I came back. And when I decided to build again, I made one promise: whatever I build will never cheat anyone. No false promises. No short weights. No fake grades. No carbide. No lies. Ever.</p>
+    <div class="story-seal">
+      <span>Certified Uncheated ✓ — Because someone has to be.</span>
+    </div>
+  </div>
+  <div class="story-r">
+    <div class="story-q">"I got cheated.<br>So I built something<br>that <em>never would.</em>"<br><br><span style="font-family:var(--sans);font-size:14px;font-weight:400;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase">Bharosa Karo. Baar Baar.</span></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="f-logo">Be<em>Uncheated</em></div>
+    <p class="f-tag">Pakistan's most honest fresh food brand. Farm-direct mangoes, premium fruit jars, smoothies and gift hampers — delivered with one guarantee: we never cheat.</p>
+    <div class="f-contact">
+      <a href="https://wa.me/923433556817">💬 WhatsApp: 03433556817</a>
+      <a href="mailto:hello@beuncheated.com">✉️ hello@beuncheated.com</a>
+      <a href="https://beuncheated.com">🌐 beuncheated.com</a>
+    </div>
+    <div class="f-socials">
+      <a class="fsoc" href="#" title="Instagram">📸</a>
+      <a class="fsoc" href="#" title="TikTok">🎵</a>
+      <a class="fsoc" href="#" title="Facebook">📘</a>
+      <a class="fsoc" href="#" title="YouTube">▶️</a>
+    </div>
+  </div>
+  <div>
+    <div class="f-heading">Shop</div>
+    <ul class="f-links">
+      <li><a href="#products">Mango Boxes</a></li>
+      <li><a href="#fruits">Fruit Boxes</a></li>
+      <li><a href="#jars">Jarfresh Jars</a></li>
+      <li><a href="#smoothies">Smoothies</a></li>
+      <li><a href="#hampers">Gift Hampers</a></li>
+      <li><a href="#subscriptions">Subscriptions</a></li>
+      <li><a href="#addons">Add-Ons</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="f-heading">Company</div>
+    <ul class="f-links">
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#">Corporate Orders</a></li>
+      <li><a href="#">Farm Partners</a></li>
+      <li><a href="https://wa.me/923433556817">Contact Us</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="f-heading">Help</div>
+    <ul class="f-links">
+      <li><a href="#">Delivery Info</a></li>
+      <li><a href="#">Return Policy</a></li>
+      <li><a href="#">Track Order</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="https://wa.me/923433556817">WhatsApp Support</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="f-bottom">
+  <span class="f-bl">© 2026 BeUncheated · beuncheated.com · Free delivery all over Pakistan 🇵🇰</span>
+  <span class="f-cert">Certified Uncheated ✓</span>
+</div>
+
+<script>
+let cartCount=0;
+function addCart(name,price){
+  cartCount++;
+  document.getElementById('cartN').textContent=cartCount;
+  document.getElementById('toastS').textContent=name+' — '+price;
+  const t=document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3200);
+}
+function waOrder(item){
+  const msg=encodeURIComponent('Assalam o Alaikum! I want to order:\n'+item+'\n\nPlease confirm availability and delivery. Thank you!');
+  window.open('https://wa.me/923433556817?text='+msg,'_blank');
+}
+function openCart(){alert('🥭 Cart: '+cartCount+' items.\nComplete order on WhatsApp — tap the green button!')}
+function showTab(tab,btn){
+  const parent=btn.closest('section')||btn.closest('.sec')||document.body;
+  parent.querySelectorAll('.pgrid,.sm-grid').forEach(g=>g.classList.add('hidden'));
+  parent.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.remove('hidden');
+  btn.classList.add('active');
+}
+function updatePrice(id,sel){
+  document.getElementById(id).textContent='PKR '+Number(sel.value).toLocaleString();
+}
+function goTo(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').style.boxShadow=window.scrollY>20?'0 2px 20px rgba(0,0,0,.07)':'none';
+});
+</script>
+</body>
+</html>
